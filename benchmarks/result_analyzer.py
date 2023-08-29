@@ -9,7 +9,7 @@ import time
 logger = logging.getLogger(__name__)
 
 
-class AirflowAnalyzer:
+class ResultAnalyzer:
 
   def __init__(self, args):
     self._args = args
@@ -263,7 +263,7 @@ def main():
   logging.basicConfig(level=log_level, force=True)
 
   logger.info(args)
-  analyzer = AirflowAnalyzer(args)
+  analyzer = ResultAnalyzer(args)
   analyzer.run()
 
 
