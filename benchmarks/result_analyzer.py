@@ -125,10 +125,10 @@ class ResultAnalyzer:
       }
 
       if "error" not in tmp["metrics"]:
-        d["metrics"]["run_status"] = "success"
+        d["dimensions"]["run_status"] = "success"
         d["metrics"] = self.get_calculated_metrics(d["metrics"], tmp)
       else:
-        d["metrics"]["run_status"] = "failure"
+        d["dimensions"]["run_status"] = "failure"
         d["metrics"]["median_total_time"] = -1
         d["metrics"]["median_per_iter_time"] = -1
         d["metrics"]["xla_median_trace_per_iter_time"] = -1
