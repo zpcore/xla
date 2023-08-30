@@ -104,12 +104,23 @@ class ResultAnalyzer:
     runs = []
     for jsonline in jsonlines:
       tmp = json.loads(jsonline)
+      batch_size = tmp["experiment"]["batch_size"]
+      batch_side_value = -1 if batch_size is None else batch_size
+      xla = tmp["experiment"]["xla"]
+      xla_value = "None" if xla is None else xla
+      dynamo = tmp["experiment"]["dynamo"]
+      dynamo_value = "None" if dynamo is None else dynamo
+      test = tmp["experiment"]["test"]
+      test_value = "None" if test is None else test
+      outputs_file = tmp["experiment"].get("outputs_file", None)
+      outputs_file_value = "None" if outputs_file is None else outputs_file
+
       d = {
           "metrics": {
               "timestamp": int(self.timestamp),
-              "batch_size": tmp["experiment"].get("batch_size", -1),
+              "batch_size": batch_side_value,
               "repeat": tmp["repeat"],
-              "iterations_per_run": tmp["iterations_per_run"],
+              "iterations_per_run": tmp["iterations_per_run"]
           },
           "dimensions": {
               "suite_name": tmp["model"]["suite_name"],
@@ -117,10 +128,10 @@ class ResultAnalyzer:
               "experiment_name": tmp["experiment"]["experiment_name"],
               "accelerator": tmp["experiment"]["accelerator_model"],
               "accelerator_model": tmp["experiment"]["accelerator_model"],
-              "xla": tmp["experiment"].get("xla", "None"),
-              "dynamo": tmp["experiment"].get("dynamo", "None"),
-              "test": tmp["experiment"]["test"],
-              "outputs_file": tmp["outputs_file"]
+              "xla": xla_value,
+              "dynamo": dynamo_value,
+              "test": test_value,
+              "outputs_file": outputs_file_value
           }
       }
 
