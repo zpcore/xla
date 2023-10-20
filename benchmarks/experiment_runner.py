@@ -318,7 +318,7 @@ def parse_args(args=None):
   parser.add_argument(
       "--dynamo",
       choices=[
-          "None", "inductor", "torchxla_trace_once", "aot_torchxla_trace_once"
+          "None", "inductor", "openxla_eval", "openxla"
       ],
       action="append",
       help="Specify an xla option to use.",

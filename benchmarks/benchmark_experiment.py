@@ -44,7 +44,7 @@ class ExperimentLoader:
           "accelerator": ["cpu", "gpu", "tpu"],
           "xla": [None, "PJRT", "XRT"],
           "dynamo": [
-              None, "inductor", "torchxla_trace_once", "aot_torchxla_trace_once"
+              None, "inductor", "openxla_eval", "openxla"
           ],
           "test": ["eval", "train"],
       }
@@ -83,10 +83,10 @@ class ExperimentLoader:
         experiment_config["accelerator"] == "gpu" and
         not experiment_config["xla"]):
       return False
-    if experiment_config["dynamo"] == "torchxla_trace_once" and not (
+    if experiment_config["dynamo"] == "openxla_eval" and not (
         experiment_config["xla"] and experiment_config["test"] == "eval"):
       return False
-    if experiment_config["dynamo"] == "aot_torchxla_trace_once" and not (
+    if experiment_config["dynamo"] == "openxla" and not (
         experiment_config["xla"] and experiment_config["test"] == "train"):
       return False
     if (experiment_config["xla"] and
