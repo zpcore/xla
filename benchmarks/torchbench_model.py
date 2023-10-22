@@ -158,7 +158,6 @@ class TorchBenchModel(BenchmarkModel):
     benchmark = benchmark_cls(
         test=self.benchmark_experiment.test,
         device=device,
-        jit=False,
         batch_size=self.benchmark_experiment.batch_size,
     )
 
