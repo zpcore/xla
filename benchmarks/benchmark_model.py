@@ -103,7 +103,8 @@ class BenchmarkModel:
       # optimizer.
       # This makes the openxla results not comparable
       # with other training results
-      self.optimizer = None
+      # self.optimizer = None
+      pass
     else:
       if not hasattr(self, "optimizer"):
         # For some special models, self.set_up() may have initialized an
